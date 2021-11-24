@@ -1,14 +1,16 @@
 package Controlador;
+
 import java.sql.*;
 import java.util.*;
 import Modelo.Cliente;
-import Modelo.Conexion;
+import static Modelo.Conexion.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class ClienteDAO {
     private static final String SQL_SELECT="SELECT id, nombre, contacto,contraseña FROM clientes";
-    
+    private static final String SQL_INSERT="INSERT into persona(nombre, contacto, contraseña) VALUES(?,?,?)";
     public List<Cliente> seleccionar(){
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -16,7 +18,7 @@ public class ClienteDAO {
         Cliente cliente;
         List<Cliente> clientes = new ArrayList<>();
         try { 
-            conn = Conexion.getConnection();
+            conn = getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while(rs.next()){
@@ -32,9 +34,9 @@ public class ClienteDAO {
         }
         finally{
             try {
-                Conexion.close(rs);
-                Conexion.close(stmt);
-                Conexion.close(conn);
+                close(rs);
+                close(stmt);
+                close(conn);
             } catch (SQLException ex) {
                 ex.printStackTrace(System.out);
             }
@@ -42,4 +44,20 @@ public class ClienteDAO {
         return clientes;
     }
     
+    public int insertar(Cliente cliente){
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int registros = 0;
+        
+        try {
+            conn = getConnection();
+            stmt=conn.prepareStatement(SQL_INSERT);
+            stmt.setString(1,cliente.getNombre());
+            stmt.setDouble(2,cliente.getNumeroContacto());
+            stmt.setString(3, cliente.getContraseña());
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

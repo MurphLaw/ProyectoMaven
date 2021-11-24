@@ -9,8 +9,8 @@ public class TestManejo {
     public static void main(String[] args) {
         ClienteDAO clienteDao = new ClienteDAO();
         List<Cliente> clientes = clienteDao.seleccionar();
-        for(Cliente cliente:clientes){
-        System.out.println("cliente = " + cliente);
-    }
+        clientes.forEach(cliente -> {
+            System.out.println("cliente = " + cliente);
+        });
     }
 }
