@@ -9,8 +9,11 @@ import java.util.logging.Logger;
 
 
 public class ClienteDAO {
+    
     private static final String SQL_SELECT="SELECT id, nombre, contacto,contraseña FROM clientes";
-    private static final String SQL_INSERT="INSERT into persona(nombre, contacto, contraseña) VALUES(?,?,?)";
+    private static final String SQL_INSERT="INSERT into clientes(nombre, contacto, contraseña) VALUES(?,?,?)";
+    
+    
     public List<Cliente> seleccionar(){
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -55,9 +58,21 @@ public class ClienteDAO {
             stmt.setString(1,cliente.getNombre());
             stmt.setDouble(2,cliente.getNumeroContacto());
             stmt.setString(3, cliente.getContraseña());
+            registros = stmt.executeUpdate();
+            
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace(System.out);
         }
-        
+        finally{
+            try {
+                close(stmt);
+                close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+            
+            
+        }
+        return registros;
     }
 }
