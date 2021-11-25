@@ -1,22 +1,41 @@
 
 package Test;
 
-import Controlador.ClienteDAO;
-import Modelo.Cliente;
+
+import Controlador.*;
+import Modelo.*;
 import java.util.List;
 
 public class TestManejo {
     public static void main(String[] args) {
-        ClienteDAO clienteDao = new ClienteDAO();
         
-        //prueba de insertar 7u7
-
-        Cliente clienteNew = new Cliente(60,"Pepito",11111,"1235");
-        clienteDao.insertar(clienteNew);
-        List<Cliente> clientes = clienteDao.seleccionar();
-        clientes.forEach(cliente -> {
-            System.out.println("cliente = " + cliente);
+      
+        ZapatoDAO zapatoDao = new ZapatoDAO();
+        Zapato zapatoNew = new Zapato(44,"gris",4,"zapatillas");
+        zapatoDao.insertar(zapatoNew);
+        List<Zapato> zapatos=zapatoDao.seleccionar();
+        zapatos.forEach(zapato->{
+            System.out.println("zapato = " + zapato);
         });
+        
+//        CamisaDAO camisaDao = new CamisaDAO();
+//        Camisa camisaNew = new Camisa("XL","negro",3,"classic fit porque toy gordito :c");
+//        camisaDao.insertar(camisaNew);
+//        List<Camisa> camisas=camisaDao.seleccionar();
+//        camisas.forEach(camisa->{
+//            System.out.println("camisa = " + camisa);
+//        });
+//        
+//        PantalonDAO pantalonDao = new PantalonDAO();
+//        Pantalon pantalonNew = new Pantalon(42,"negro",2,"mocho");
+//        pantalonDao.insertar(pantalonNew);
+//        List<Pantalon> pantalones=pantalonDao.seleccionar();
+//        pantalones.forEach(pantalon->{
+//            System.out.println("pantalon = " + pantalon);
+//        });
+//        
+        
+        
         
         
         
