@@ -1,41 +1,34 @@
 package Controlador;
 
+import Modelo.*;
 import java.sql.*;
 import java.util.*;
-import Modelo.Cliente;
 import static Modelo.Conexion.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
-public class ClienteDAO {
+
+public class ZapatoDAO {
+     private static final String SQL_SELECT="SELECT id_zapatos, talla, color,cantidad,observaciones FROM zapatos";
+    private static final String SQL_INSERT="INSERT into zapatos(talla, color, cantidad,observaciones,id_clientes_zapatos) VALUES(?,?,?,?,?)";
     
-    private static final String SQL_SELECT="SELECT id_clientes, nombre, contacto,contrasena FROM clientes";
-    private static final String SQL_INSERT="INSERT into clientes(nombre, contacto, contrasena) VALUES(?,?,?)";
-    
-    
-    public List<Cliente> seleccionar(){
+    public List<Zapato> seleccionar(){
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs= null;
-        Cliente cliente;
-        List<Cliente> clientes = new ArrayList<>();
+        Zapato zapato;
+        List<Zapato> zapatos = new ArrayList<>();
         try { 
             conn = getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while(rs.next()){
-                int idCliente = rs.getInt("id_clientes");
-                String nombre = rs.getString("nombre");
-                int numeroContacto=rs.getInt("contacto");
-/*<<<<<<< HEAD
-                String contraseña=rs.getString("contrasena");
-                cliente = new Cliente(idCliente,nombre,numeroContacto,contraseña);
-=======
-                String contrasena=rs.getString("contrasena");
-                cliente = new Cliente(idCliente,nombre,numeroContacto,contrasena);
->>>>>>> 94bbe573774b599381c0704c535a65ae7b974880
-                clientes.add(cliente);*/
+                int idZapato = rs.getInt("id_zapatos");
+                int tallaZapato = rs.getInt("talla");
+                String colorZapato=rs.getString("color");
+                int cantidadZapato=rs.getInt("cantidad");
+                String  observacionesZapato=rs.getString("observaciones");
+                zapato = new Zapato(idZapato,tallaZapato,colorZapato,cantidadZapato,observacionesZapato);
+                zapatos.add(zapato);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -49,10 +42,10 @@ public class ClienteDAO {
                 ex.printStackTrace(System.out);
             }
         }
-        return clientes;
+        return zapatos;
     }
     
-    public int insertar(Cliente cliente){
+    public int insertar(Zapato zapato){
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
@@ -60,9 +53,13 @@ public class ClienteDAO {
         try {
             conn = getConnection();
             stmt=conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1,cliente.getNombre());
-            stmt.setDouble(2,cliente.getNumeroContacto());
-            stmt.setString(3, cliente.getContrasena());
+            
+            stmt.setInt(1,zapato.getTallaZapato());
+            stmt.setString(2,zapato.getColorZapato());
+            stmt.setInt(3,zapato.getCantidadZapato());
+            stmt.setString(4,zapato.getObservacionesZapato());
+            stmt.setInt(5,1);
+            
             registros = stmt.executeUpdate();
             
         } catch (SQLException ex) {
@@ -81,3 +78,4 @@ public class ClienteDAO {
         return registros;
     }
 }
+
