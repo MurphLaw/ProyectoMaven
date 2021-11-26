@@ -137,7 +137,7 @@ public class Login extends javax.swing.JFrame {
             
             Con.ConectarBasedeDatos();
             
-            String SQL = "SELECT id, nombre, contacto, contraseña FROM clientes "
+            String SQL = "SELECT id_clientes, nombre, contacto, contrasena FROM clientes "
                     + "WHERE  nombre='"+u+"' AND contacto='"+p+"'";
             
             Con.resultado = Con.sentencia.executeQuery(SQL);

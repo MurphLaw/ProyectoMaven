@@ -10,8 +10,8 @@ import java.util.logging.Logger;
 
 public class ClienteDAO {
     
-    private static final String SQL_SELECT="SELECT id, nombre, contacto,contraseña FROM clientes";
-    private static final String SQL_INSERT="INSERT into clientes(nombre, contacto, contraseña) VALUES(?,?,?)";
+    private static final String SQL_SELECT="SELECT id_clientes, nombre, contacto,contrasena FROM clientes";
+    private static final String SQL_INSERT="INSERT into clientes(nombre, contacto, contrasena) VALUES(?,?,?)";
     
     
     public List<Cliente> seleccionar(){
@@ -25,10 +25,10 @@ public class ClienteDAO {
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while(rs.next()){
-                int idCliente = rs.getInt("id");
+                int idCliente = rs.getInt("id_clientes");
                 String nombre = rs.getString("nombre");
                 int numeroContacto=rs.getInt("contacto");
-                String contraseña=rs.getString("contraseña");
+                String contraseña=rs.getString("contrasena");
                 cliente = new Cliente(idCliente,nombre,numeroContacto,contraseña);
                 clientes.add(cliente);
             }
