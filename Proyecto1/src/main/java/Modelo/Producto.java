@@ -7,22 +7,25 @@ public class Producto {
     private String color;
     private int cantidad;
     private String observaciones;
+    private int clienteId;
 
     public Producto() {
     }
 
-    public Producto(String nombre, String talla, String color, int cantidad) {
+    public Producto(String nombre, String talla, String color, int cantidad,int clienteId) {
         this.nombre = nombre;
         this.talla = talla;
         this.color = color;
         this.cantidad = cantidad;
+        this.clienteId=clienteId;
     }
 
-    public Producto(String nombre, String talla, String color, int cantidad, String observaciones) {
+    public Producto(String nombre, String talla, String color, int cantidad,int clienteId, String observaciones) {
         this.nombre = nombre;
         this.talla = talla;
         this.color = color;
         this.cantidad = cantidad;
+        this.clienteId=clienteId;
         this.observaciones = observaciones;
     }
 
@@ -58,6 +61,16 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
+    public int getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(int clienteId) {
+        this.clienteId = clienteId;
+    }
+    
+    
+
     public String getObservaciones() {
         return observaciones;
     }
@@ -68,9 +81,10 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "nombre=" + nombre + ", talla=" + talla + ", color=" + color + ", cantidad=" + cantidad + ", observaciones=" + observaciones + '}';
+        return "Producto{" + "nombre=" + nombre + ", talla=" + talla + ", color=" + color + ", cantidad=" + cantidad + ", observaciones=" + observaciones + ", clienteId=" + clienteId + '}';
     }
-    
+
+   
     
     
     

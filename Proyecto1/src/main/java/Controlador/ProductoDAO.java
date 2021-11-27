@@ -23,7 +23,7 @@ public class ProductoDAO {
             conn=getConnection();
             stmt=conn.prepareStatement(SQL_INSERT);
             
-            stmt.setInt(1, producto.getClienteId);
+            stmt.setInt(1, producto.getClienteId());
             stmt.setString(2,producto.getTalla());
             stmt.setString(3,producto.getColor());
             stmt.setInt(4, producto.getCantidad());
@@ -64,7 +64,8 @@ public class ProductoDAO {
                 String color=rs.getString("color");
                 int cantidad=rs.getInt("cantidad");
                 String observaciones=rs.getString("observaciones");
-                producto= new Producto(nombre,talla,color,cantidad,observaciones);
+                int clienteId=rs.getInt("id_cliente");
+                producto= new Producto(nombre,talla,color,cantidad,clienteId,observaciones);
                 productos.add(producto);
             
             

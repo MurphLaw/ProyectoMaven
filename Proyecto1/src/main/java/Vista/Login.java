@@ -5,6 +5,7 @@
 package Vista;
 
 import Controlador.ClienteDAO;
+import Controlador.ManejoUsuario;
 
 import Modelo.Conexion;
 import Modelo.Cliente;
@@ -137,9 +138,8 @@ public class Login extends javax.swing.JFrame {
         String usuario = Txtusuario.getText();
         String contrasena = Txtcontraseña.getText();
         Cliente cliente= new Cliente();
-        ClienteDAO clienteDao= new ClienteDAO();
-        cliente=clienteDao.identificar(usuario, contrasena);
-        
+        ManejoUsuario manejo= new ManejoUsuario();
+        cliente=manejo.autenticarUsuario(usuario, contrasena);
         if(cliente.getNombre()!=null){
                 //ocultado el login y entramos a bienvenida
                 

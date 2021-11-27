@@ -1,14 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controlador;
 
-/**
- *
- * @author gabri
- */
+import Modelo.Cliente;
+
 public class ManejoUsuario {
+    public static int userId;
     
+    public Cliente autenticarUsuario(String correo, String contrasena){
+       ClienteDAO clienteDao= new ClienteDAO();
+       Cliente logeado;
+       logeado=clienteDao.identificar(correo, contrasena);
+       userId=logeado.getIdCliente();
+        
+        return logeado;
+    }
 }

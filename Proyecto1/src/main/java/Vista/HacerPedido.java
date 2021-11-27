@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Controlador.ManejoUsuario;
 import Controlador.ProductoDAO;
 import Modelo.Producto;
 
@@ -263,7 +264,7 @@ public class HacerPedido extends javax.swing.JFrame {
      
      
      ProductoDAO productoDao= new ProductoDAO();
-     Producto producto= new Producto(nombre,talla,color,cantidad,5);
+     Producto producto= new Producto(nombre,talla,color,cantidad,ManejoUsuario.userId);
      productoDao.agregarProducto(producto);
      
     }//GEN-LAST:event_jButtonAgregarPedidoActionPerformed
