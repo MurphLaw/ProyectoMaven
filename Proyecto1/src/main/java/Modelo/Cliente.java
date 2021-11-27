@@ -5,7 +5,9 @@ public class Cliente {
     private String nombre;
     private double numeroContacto;
     private String contrasena;
-
+    private String correo;
+    
+    
     public Cliente() {
     }
     
@@ -15,17 +17,19 @@ public class Cliente {
         this.idCliente = idCliente;
     }
     //para generacion de clientes
-    public Cliente(String nombre, double numeroContacto, String contrasena) {
+    public Cliente(String nombre, double numeroContacto, String contrasena, String correo) {
         this.nombre = nombre;
         this.numeroContacto = numeroContacto;
         this.contrasena = contrasena;
+        this.correo=correo;
     }
     //para modificacion de cliente
-    public Cliente(int idCliente, String nombre, double numeroContacto, String contrasena) {
+    public Cliente(int idCliente, String nombre, double numeroContacto, String contrasena, String correo) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.numeroContacto = numeroContacto;
         this.contrasena = contrasena;
+        this.correo=correo;
     }
 
     public int getIdCliente() {
@@ -60,10 +64,22 @@ public class Cliente {
         this.contrasena = contrasena;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     @Override
     public String toString() {
-        return "Clientes{" + "idCliente= " + idCliente + ", nombre= " + nombre + ", numeroContacto= " + numeroContacto + ", contraseña= " + contrasena + '}';
+        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", numeroContacto=" + numeroContacto + ", contrasena=" + contrasena + ", correo=" + correo + '}';
     }
+    
+    
+    
+    
     
     
     

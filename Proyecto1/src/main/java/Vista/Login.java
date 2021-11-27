@@ -5,7 +5,7 @@
 package Vista;
 
 import Controlador.ClienteDAO;
-import Controlador.Control;
+
 import Modelo.Conexion;
 import Modelo.Cliente;
 import java.sql.SQLException;
@@ -142,12 +142,11 @@ public class Login extends javax.swing.JFrame {
         
         if(cliente.getNombre()!=null){
                 //ocultado el login y entramos a bienvenida
-                System.out.println("id"+cliente.getIdCliente());
-                System.out.println("cliente 2"+cliente); 
+                
                 setVisible(false);
                 Bienvenida bienvenida = new Bienvenida();
                 
-                bienvenida.LbUsuario.setText("Hola de nuevo tu telefonos es "+ cliente.getIdCliente());
+                bienvenida.LbUsuario.setText("Hola de nuevo "+ cliente.getNombre());
                 bienvenida.setVisible(true);
                 
             }else{

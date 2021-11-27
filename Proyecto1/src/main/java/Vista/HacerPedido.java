@@ -4,16 +4,19 @@
  */
 package Vista;
 
+import Controlador.ProductoDAO;
+import Modelo.Producto;
+
 /**
  *
  * @author USER
  */
 public class HacerPedido extends javax.swing.JFrame {
 
-    String producto;
+    String nombre;
     String talla;
     String color;
-    String cantidad;
+    int cantidad;
 
     /**
      * Creates new form HacerPedido
@@ -227,17 +230,17 @@ public class HacerPedido extends javax.swing.JFrame {
     private void cbxSeleccionProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSeleccionProductosActionPerformed
         String productoSeleccionado = cbxSeleccionProductos.getSelectedItem().toString();        // TODO add your handling code here:
         if (productoSeleccionado == "Camisas") {
-            producto = "Camisas";
+            nombre = "Camisas";
         } else if (productoSeleccionado == "Pantalones") {
-            producto = "Pantalones";
+            nombre = "Pantalones";
         } else if (productoSeleccionado == "Zapatos") {
-            producto = "Zapatos";
+            nombre = "Zapatos";
         } else {
         }
     }//GEN-LAST:event_cbxSeleccionProductosActionPerformed
 
     private void jTextFieldCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCantidadActionPerformed
-        cantidad = jTextFieldCantidad.getText();
+        cantidad = Integer.parseInt(jTextFieldCantidad.getText());
         jLabelCantidad.setText("✔");
         jLabelCantidad.setForeground(new java.awt.Color(51, 255, 0));
         
@@ -256,7 +259,12 @@ public class HacerPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldTallaActionPerformed
 
     private void jButtonAgregarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarPedidoActionPerformed
-     jTextArea1.setText(producto + " - " + talla + " - " + color + " - " + cantidad);
+     jTextArea1.setText(nombre + " - " + talla + " - " + color + " - " + cantidad);
+     
+     
+     ProductoDAO productoDao= new ProductoDAO();
+     Producto producto= new Producto(nombre,talla,color,cantidad,5);
+     productoDao.agregarProducto(producto);
      
     }//GEN-LAST:event_jButtonAgregarPedidoActionPerformed
 

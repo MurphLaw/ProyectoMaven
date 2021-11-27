@@ -10,8 +10,8 @@ import java.util.logging.Logger;
 
 public class ClienteDAO {
     
-    private static final String SQL_SELECT="SELECT id_clientes, nombre, contacto,contrasena FROM clientes";
-    private static final String SQL_INSERT="INSERT into clientes(nombre, contacto, contrasena) VALUES(?,?,?)";
+    private static final String SQL_SELECT="SELECT id_clientes, nombre, contacto,contrasena, correo FROM clientes";
+    private static final String SQL_INSERT="INSERT into clientes(nombre, contacto, contrasena, correo) VALUES(?,?,?,?)";
     
                     
     
@@ -30,10 +30,9 @@ public class ClienteDAO {
                 int idCliente = rs.getInt("id_clientes");
                 String nombre = rs.getString("nombre");
                 int numeroContacto=rs.getInt("contacto");
-                String contraseña=rs.getString("contrasena");
-                cliente = new Cliente(idCliente,nombre,numeroContacto,contraseña);
                 String contrasena=rs.getString("contrasena");
-                cliente = new Cliente(idCliente,nombre,numeroContacto,contrasena);
+                String correo=rs.getString("correo");
+                cliente = new Cliente(idCliente,nombre,numeroContacto,contrasena,correo);
                 clientes.add(cliente);
             }
         } catch (SQLException ex) {
@@ -62,6 +61,7 @@ public class ClienteDAO {
             stmt.setString(1,cliente.getNombre());
             stmt.setDouble(2,cliente.getNumeroContacto());
             stmt.setString(3, cliente.getContrasena());
+            stmt.setString(4,cliente.getCorreo());
             registros = stmt.executeUpdate();
             
         } catch (SQLException ex) {
@@ -80,7 +80,7 @@ public class ClienteDAO {
         return registros;
     }
     
-    public Cliente identificar(String usuario, String contrasena){
+    public Cliente identificar(String correo, String contrasena){
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs= null;
@@ -89,14 +89,15 @@ public class ClienteDAO {
         try {
             
             conn = getConnection();
-            stmt=conn.prepareStatement(SQL_SELECT+" WHERE nombre='"+usuario+"' AND contrasena='"+contrasena+"'");
+            stmt=conn.prepareStatement(SQL_SELECT+" WHERE correo='"+correo+"' AND contrasena='"+contrasena+"'");
             rs = stmt.executeQuery();
             if(rs.next()){
                 int idCliente = rs.getInt("id_clientes");
                 String nombre = rs.getString("nombre");
                 int numeroContacto=rs.getInt("contacto");
                 String contrasenaUser=rs.getString("contrasena");
-                cliente = new Cliente(idCliente,nombre,numeroContacto,contrasenaUser);
+                String correoUser=rs.getString("correo");
+                cliente = new Cliente(idCliente,nombre,numeroContacto,contrasenaUser,correoUser);
 //                System.out.println("cliente = " + cliente);
 //                cliente.setContraseña(rs.getString("contrasena"));
 //                cliente.setIdCliente(rs.getInt("id_clientes"));
