@@ -13,6 +13,8 @@ public class ClienteDAO {
     private static final String SQL_SELECT="SELECT id_clientes, nombre, contacto,contrasena FROM clientes";
     private static final String SQL_INSERT="INSERT into clientes(nombre, contacto, contrasena) VALUES(?,?,?)";
     
+                    
+    
     
     public List<Cliente> seleccionar(){
         Connection conn = null;
@@ -28,14 +30,11 @@ public class ClienteDAO {
                 int idCliente = rs.getInt("id_clientes");
                 String nombre = rs.getString("nombre");
                 int numeroContacto=rs.getInt("contacto");
-/*<<<<<<< HEAD
                 String contraseña=rs.getString("contrasena");
                 cliente = new Cliente(idCliente,nombre,numeroContacto,contraseña);
-=======
                 String contrasena=rs.getString("contrasena");
                 cliente = new Cliente(idCliente,nombre,numeroContacto,contrasena);
->>>>>>> 94bbe573774b599381c0704c535a65ae7b974880
-                clientes.add(cliente);*/
+                clientes.add(cliente);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -80,4 +79,53 @@ public class ClienteDAO {
         }
         return registros;
     }
+    
+    public Cliente identificar(String usuario, String contrasena){
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs= null;
+        Cliente cliente= new Cliente();
+//        boolean exito=false;
+        try {
+            
+            conn = getConnection();
+            stmt=conn.prepareStatement(SQL_SELECT+" WHERE nombre='"+usuario+"' AND contrasena='"+contrasena+"'");
+            rs = stmt.executeQuery();
+            if(rs.next()){
+                int idCliente = rs.getInt("id_clientes");
+                String nombre = rs.getString("nombre");
+                int numeroContacto=rs.getInt("contacto");
+                String contrasenaUser=rs.getString("contrasena");
+                cliente = new Cliente(idCliente,nombre,numeroContacto,contrasenaUser);
+//                System.out.println("cliente = " + cliente);
+//                cliente.setContraseña(rs.getString("contrasena"));
+//                cliente.setIdCliente(rs.getInt("id_clientes"));
+//                cliente.setNombre(rs.getString("nombre"));
+//                cliente.setNumeroContacto(rs.getInt("contacto"));
+//                System.out.println("Cliente 1 " +cliente);
+//                exito=true;
+                
+            }
+            else{
+//                
+               
+            }
+              
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+        
+         finally{
+            try {
+                close(stmt);
+                close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
+        
+        return cliente;
+    }
+    
 }

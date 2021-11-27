@@ -4,8 +4,13 @@
  */
 package Vista;
 
+import Controlador.ClienteDAO;
+import Controlador.Control;
+import Modelo.Conexion;
+import Modelo.Cliente;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -129,34 +134,27 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //boton de iniciar seccion
-        try{
-            ConexionBD Con = new ConexionBD();
-            //La variable Con nos permitira hacer consultar, editar valores de BD
-            String u = Txtusuario.getText();
-            String p = Txtcontraseña.getText();
-            
-            Con.ConectarBasedeDatos();
-            
-            String SQL = "SELECT id_clientes, nombre, contacto, contrasena FROM clientes "
-                    + "WHERE  nombre='"+u+"' AND contacto='"+p+"'";
-            
-            Con.resultado = Con.sentencia.executeQuery(SQL);
-            
-            if(Con.resultado.next()){
+        String usuario = Txtusuario.getText();
+        String contrasena = Txtcontraseña.getText();
+        Cliente cliente= new Cliente();
+        ClienteDAO clienteDao= new ClienteDAO();
+        cliente=clienteDao.identificar(usuario, contrasena);
+        
+        if(cliente.getNombre()!=null){
                 //ocultado el login y entramos a bienvenida
+                System.out.println("id"+cliente.getIdCliente());
+                System.out.println("cliente 2"+cliente); 
                 setVisible(false);
                 Bienvenida bienvenida = new Bienvenida();
-                bienvenida.LbUsuario.setText("" + Con.resultado.getString("nombre"));
+                
+                bienvenida.LbUsuario.setText("Hola de nuevo tu telefonos es "+ cliente.getIdCliente());
                 bienvenida.setVisible(true);
                 
             }else{
                 JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecto");
             }
-            
-            
-        }catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+
+       
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

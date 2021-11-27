@@ -11,7 +11,7 @@ public class TestManejo {
         
       
         ZapatoDAO zapatoDao = new ZapatoDAO();
-        Zapato zapatoNew = new Zapato(44,"gris",4,"zapatillas");
+        Zapato zapatoNew = new Zapato(31,"gris",4,"zapatillas");
         zapatoDao.insertar(zapatoNew);
         List<Zapato> zapatos=zapatoDao.seleccionar();
         zapatos.forEach(zapato->{

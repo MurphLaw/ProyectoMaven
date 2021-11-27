@@ -257,6 +257,7 @@ public class HacerPedido extends javax.swing.JFrame {
 
     private void jButtonAgregarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarPedidoActionPerformed
      jTextArea1.setText(producto + " - " + talla + " - " + color + " - " + cantidad);
+     
     }//GEN-LAST:event_jButtonAgregarPedidoActionPerformed
 
     /**
