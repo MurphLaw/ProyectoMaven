@@ -149,7 +149,7 @@ public class Login extends javax.swing.JFrame {
                 setVisible(false);
                 Bienvenida bienvenida = new Bienvenida();
                 
-                bienvenida.LbUsuario.setText("Hola de nuevo "+ cliente.getNombre());
+                //bienvenida.LbUsuario.setText("Hola de nuevo "+ cliente.getNombre());
                 bienvenida.setVisible(true);
                 
             }else{

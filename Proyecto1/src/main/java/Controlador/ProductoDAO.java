@@ -47,25 +47,25 @@ public class ProductoDAO {
         
     }   
     
-    public List<Producto> Pedidos(int id_usuario){
-        List<Producto> productos= new ArrayList<>();
-        Producto producto;
+    public List<String> Pedidos(int id_cliente){
+        List<String> productos= new ArrayList<>();
+        String producto;
         Connection conn=null;
         PreparedStatement stmt=null;
         ResultSet rs=null;
         
         try {
             conn=getConnection();
-            stmt=conn.prepareStatement(SQL_SELECT+" WHERE id_usuario='"+id_usuario+"'");
+            stmt=conn.prepareStatement(SQL_SELECT+" WHERE id_cliente='"+id_cliente+"'");
             rs=stmt.executeQuery();
             while(rs.next()){
-                String nombre=rs.getString("nombre");
+                String nombre=rs.getString("producto");
                 String talla=rs.getString("talla");
                 String color=rs.getString("color");
                 int cantidad=rs.getInt("cantidad");
                 String observaciones=rs.getString("observaciones");
-                int clienteId=rs.getInt("id_cliente");
-                producto= new Producto(nombre,talla,color,cantidad,clienteId,observaciones);
+                
+                producto= ("Producto= "+nombre+",Talla= "+talla+",Color= "+color+",Cantidad= "+cantidad);
                 productos.add(producto);
             
             

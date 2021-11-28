@@ -263,7 +263,7 @@ public class HacerPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldTallaActionPerformed
 
     private void jButtonAgregarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarPedidoActionPerformed
-     jTextArea1.setText(nombre + " - " + talla + " - " + color + " - " + cantidad);
+     jTextArea1.append(nombre + " - " + talla + " - " + color + " - " + cantidad +"\n");
      
      
      ProductoDAO productoDao= new ProductoDAO();
