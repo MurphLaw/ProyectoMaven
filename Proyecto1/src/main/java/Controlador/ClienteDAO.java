@@ -128,5 +128,21 @@ public class ClienteDAO {
         
         return cliente;
     }
-    
+    public boolean verificarCorreo(String correo){
+        Connection conn=null;
+        PreparedStatement stmt=null;
+        ResultSet rs=null;
+        boolean correoRegistrado=false;
+        try {
+            conn=getConnection();
+            stmt=conn.prepareStatement(SQL_SELECT+" WHERE correo='"+correo+"'");
+            rs=stmt.executeQuery();
+            correoRegistrado = rs.next();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+        
+        return correoRegistrado;
+    }
 }
