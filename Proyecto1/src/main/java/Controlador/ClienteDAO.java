@@ -29,7 +29,7 @@ public class ClienteDAO {
             while(rs.next()){
                 int idCliente = rs.getInt("id_clientes");
                 String nombre = rs.getString("nombre");
-                int numeroContacto=rs.getInt("contacto");
+                double numeroContacto=rs.getDouble("contacto");
                 String contrasena=rs.getString("contrasena");
                 String correo=rs.getString("correo");
                 cliente = new Cliente(idCliente,nombre,numeroContacto,contrasena,correo);
@@ -85,7 +85,7 @@ public class ClienteDAO {
         PreparedStatement stmt = null;
         ResultSet rs= null;
         Cliente cliente= new Cliente();
-//        boolean exito=false;
+
         try {
             
             conn = getConnection();
@@ -94,17 +94,11 @@ public class ClienteDAO {
             if(rs.next()){
                 int idCliente = rs.getInt("id_clientes");
                 String nombre = rs.getString("nombre");
-                int numeroContacto=rs.getInt("contacto");
+                double numeroContacto=rs.getDouble("contacto");
                 String contrasenaUser=rs.getString("contrasena");
                 String correoUser=rs.getString("correo");
                 cliente = new Cliente(idCliente,nombre,numeroContacto,contrasenaUser,correoUser);
-//                System.out.println("cliente = " + cliente);
-//                cliente.setContraseña(rs.getString("contrasena"));
-//                cliente.setIdCliente(rs.getInt("id_clientes"));
-//                cliente.setNombre(rs.getString("nombre"));
-//                cliente.setNumeroContacto(rs.getInt("contacto"));
-//                System.out.println("Cliente 1 " +cliente);
-//                exito=true;
+
                 
             }
             else{

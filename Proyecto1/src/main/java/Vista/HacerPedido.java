@@ -226,6 +226,9 @@ public class HacerPedido extends javax.swing.JFrame {
 
     private void jButtonTerminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerminarPedidoActionPerformed
         this.dispose();         // TODO add your handling code here:
+        setVisible(false);
+        Bienvenida bienvenida= new Bienvenida();
+        bienvenida.setVisible(true);
     }//GEN-LAST:event_jButtonTerminarPedidoActionPerformed
 
     private void cbxSeleccionProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSeleccionProductosActionPerformed
