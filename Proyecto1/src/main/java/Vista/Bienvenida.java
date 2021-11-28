@@ -93,7 +93,7 @@ public class Bienvenida extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(LbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jButton2)
                 .addGap(34, 34, 34)
@@ -116,15 +116,9 @@ public class Bienvenida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (hacerPedido == null) {
-            hacerPedido = new HacerPedido();
-            hacerPedido.setVisible(true);
-        }
-        //setVisible(false);
-        //HacerPedido nuevoPedido = new HacerPedido();
-        //nuevoPedido.getContentPane().setVisible(true);
-        //bienvenida.LbUsuario.setText("" + Con.resultado.getString("nombre"));
-        // TODO add your handling code here:
+        setVisible(false);
+        HacerPedido hacerPedido=new HacerPedido();
+        hacerPedido.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
