@@ -21,6 +21,7 @@ public class HistorialPedidos extends javax.swing.JFrame {
      */
     public HistorialPedidos() {
         initComponents();
+        cargarPedidos();
     }
 
     /**
@@ -106,15 +107,19 @@ public class HistorialPedidos extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
+        cargarPedidos();
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cargarPedidos(){
         ProductoDAO ProductoDao = new ProductoDAO();
         List<String> pedidos = ProductoDao.Pedidos(ManejoUsuario.userId);
         
         pedidos.forEach(pedido -> {
             AreaTexto.append(pedido+"\n");
         });
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */

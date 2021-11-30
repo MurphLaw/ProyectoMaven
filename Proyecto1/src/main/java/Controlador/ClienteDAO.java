@@ -4,8 +4,7 @@ import java.sql.*;
 import java.util.*;
 import Modelo.Cliente;
 import static Modelo.Conexion.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 public class ClienteDAO {
@@ -136,7 +135,14 @@ public class ClienteDAO {
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }
-        
+        finally{
+            try {
+                close(stmt);
+                close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
         return correoRegistrado;
     }
 }
